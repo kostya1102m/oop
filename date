@@ -6,7 +6,6 @@ class Date
 private:
     int year, month, day, hour, minute, second;
     bool IsOurEra;
-    
     bool operator<(const Date& other)
     {
         return tie(year, month, day, hour, minute, second) < tie(other.year, other.month, other.day, other.hour, other.minute, other.second);
@@ -79,6 +78,20 @@ private:
         else
             os << " До нашей эры";
         return os;
+    }
+    int daysInMonth(int month, int year)
+    {
+        if (month == 2)
+        {
+            if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+                return 29; 
+            else
+                return 28; 
+        }
+        else if (month == 4 || month == 6 || month == 9 || month == 11)
+            return 30; // апр июнь сен нояб
+        else
+            return 31; // янв март май июль авг окт дек
     }
 public:
     Date(){year = 1960;month = 1;day = 1;hour = 0;minute = 0;second = 0;IsOurEra = true;}
@@ -157,22 +170,7 @@ public:
             cout << e.what() << endl;
         }
     }
-public:
     //проверка на високосный или невисокосный год
-    int daysInMonth(int month, int year)
-    {
-        if (month == 2)
-        {
-            if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
-                return 29; 
-            else
-                return 28; 
-        }
-        else if (month == 4 || month == 6 || month == 9 || month == 11)
-            return 30; // апр июнь сен нояб
-        else
-            return 31; // янв март май июль авг окт дек
-    }
     Date& add(int y, int m, int d, int h, int min, int sec)
     {
         if(IsOurEra == true) 
