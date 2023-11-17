@@ -180,7 +180,6 @@ public:
             setMinute(min);
             setSecond(sec);
     }
-    //проверка на високосный или невисокосный год
     Date& add(int y, int m, int d, int h, int min, int sec)
     {
         if(IsOurEra == true) 
