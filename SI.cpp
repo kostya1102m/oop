@@ -14,6 +14,23 @@ using namespace std;
 class Human
 {
 public:
+    string getName()
+    {
+        return name;
+    }
+    void setName(string n)
+    {
+        name = n;
+    }
+
+    int getAge()
+    {
+        return age;
+    }
+    void setAge(int a)
+    {
+        age = a;
+    }
 
 
 private:
