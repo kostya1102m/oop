@@ -14,22 +14,18 @@ using namespace std;
 class Human
 {
 public:
+    Human(string _name, short int _age)
+    {
+        this->name = _name;
+        this->age = _age;
+    }
     string getName()
     {
         return name;
     }
-    void setName(string _name)
-    {
-        name = _name;
-    }
-
     int getAge()
     {
         return age;
-    }
-    void setAge(int _age)
-    {
-        age = _age;
     }
 
 private:
