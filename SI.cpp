@@ -32,37 +32,40 @@ public:
         age = _age;
     }
 
-
 private:
-  string name;
-  short int age;
-  
+    string name;
+    short int age;
 };
 class Student : public Human
 {
 public:
-    string getSchool(){
+    string getSchool()
+    {
         return school;
     }
-    void setSchool(string _school){
+    void setSchool(string _school)
+    {
         school = _school;
     }
+
 private:
     string school;
 };
 class Person
 {
-public:   
-    string getCharacter(){
+public:
+    string getCharacter()
+    {
         return character;
     }
-    void setCharacter(string _character){
+    void setCharacter(string _character)
+    {
         character = _character;
     }
+
 private:
     string character;
 };
 int main()
 {
-
 }
