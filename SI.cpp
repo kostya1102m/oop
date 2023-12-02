@@ -13,6 +13,9 @@ using namespace std;
 
 class Human
 {
+private:
+    string name;
+    short int age;
 public:
     Human(string _name, short int _age)
     {
@@ -27,10 +30,6 @@ public:
     {
         return age;
     }
-
-private:
-    string name;
-    short int age;
 };
 class Student : public Human
 {
@@ -41,7 +40,7 @@ public:
     }
     void setSchool(string _school)
     {
-        school = _school;
+        this->school = _school;
     }
 
 private:
@@ -56,7 +55,7 @@ public:
     }
     void setCharacter(string _character)
     {
-        character = _character;
+        this->character = _character;
     }
     virtual void doHobby() = 0;
 private:
