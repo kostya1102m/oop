@@ -9,6 +9,7 @@
 
 Каждый шаг фиксировать с помощью коммитов! */
 #include <iostream>
+#include <string>
 using namespace std;
 
 class Human
@@ -17,14 +18,19 @@ private:
     string name;
     short int age;
 public:
-    Human(string _name, short int _age)
+    Human(string n, int a) : name(n), age(a){};
+
+    void setName(string n)
     {
-        this->name = _name;
-        this->age = _age;
+        name = n;
     }
     string getName()
     {
         return name;
+    }
+    void setAge(short int a)
+    {
+        age = a;
     }
     int getAge()
     {
@@ -33,7 +39,10 @@ public:
 };
 class Student : public Human
 {
+private:
+    string school;
 public:
+    Student(string n, int a, string s) : Human(n, a), school(s){};
     string getSchool()
     {
         return school;
@@ -42,37 +51,51 @@ public:
     {
         this->school = _school;
     }
-
-private:
-    string school;
+    virtual void goesToSchool(){
+        cout << getName()<< " учится в " << getSchool() << endl;
+    }
 };
 class Person
 {
+private:
+    string character;
 public:
+    Person(string c):character(c){}
     string getCharacter()
     {
         return character;
     }
     void setCharacter(string _character)
     {
-        this->character = _character;
+        character = _character;
     }
     virtual void doHobby() = 0;
-private:
-    string character;
 };
 class ToughGuy : public Student, public Person
 {
 public:
+    ToughGuy(string n, int a, string s, string c):Student(n,a,s), Person(c){}
     void fighteverybody(){
-        cout << getName() << " дерётся со всеми в школе\n";
+        cout << getName() << " дерётся со всеми\n";
     }
     void doHobby () override
     {
         cout << getName() << " играет в футбол\n";
     }
+    void goesToSchool() override
+    {
+        cout << "Ничего не делает и не ходит в уник\n";
+    }
 };
 int main()
 {
-    setlocale(LC_ALL, "Russian");
+    Human s1("Попов Роман",19);
+    Student s2 ("Александр",25,"ВИ-ШРМИ");
+    s2.goesToSchool();
+    ToughGuy t("Иван",20,"ИМКТ","Скромняга");
+    cout << t.getName() << " - "<<t.getCharacter() << endl;
+    t.goesToSchool();
+    t.fighteverybody();
+    t.doHobby();
+
 }
