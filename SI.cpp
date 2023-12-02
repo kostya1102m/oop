@@ -72,6 +72,10 @@ public:
     void fighteverybody(){
         cout << getName() << " дерётся со всеми в школе\n";
     }
+    void doHobby () override
+    {
+        cout << getName() << " играет в футбол\n";
+    }
 };
 int main()
 {
