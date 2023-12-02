@@ -18,18 +18,18 @@ public:
     {
         return name;
     }
-    void setName(string n)
+    void setName(string _name)
     {
-        name = n;
+        name = _name;
     }
 
     int getAge()
     {
         return age;
     }
-    void setAge(int a)
+    void setAge(int _age)
     {
-        age = a;
+        age = _age;
     }
 
 
@@ -37,6 +37,30 @@ private:
   string name;
   short int age;
   
+};
+class Student : public Human
+{
+public:
+    string getSchool(){
+        return school;
+    }
+    void setSchool(string _school){
+        school = _school;
+    }
+private:
+    string school;
+};
+class Person
+{
+public:   
+    string getCharacter(){
+        return character;
+    }
+    void setCharacter(string _character){
+        character = _character;
+    }
+private:
+    string character;
 };
 int main()
 {
