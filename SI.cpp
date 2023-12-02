@@ -62,10 +62,17 @@ public:
     {
         character = _character;
     }
-
 private:
     string character;
 };
+class ToughGuy : public Student, public Person
+{
+public:
+    void fighteverybody(){
+        cout << getName() << " дерётся со всеми в школе\n";
+    }
+};
 int main()
 {
+    setlocale(LC_ALL, "Russian");
 }
