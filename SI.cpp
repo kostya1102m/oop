@@ -62,6 +62,7 @@ public:
     {
         character = _character;
     }
+    virtual void doHobby() = 0;
 private:
     string character;
 };
