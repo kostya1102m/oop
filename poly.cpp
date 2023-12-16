@@ -6,9 +6,11 @@ class Pizza
 public:
     Pizza(string _name, string _des, int _size, int _cheese, int _salt) : name(_name), description(_des),
                                                                           size(_size), cheese(_cheese), salt(_salt)
+
     {
         price = calculatePrice();
     }
+    ~Pizza(){};
     string getName() const
     {
         return name;
@@ -59,7 +61,7 @@ private:
 
     int calculatePrice()
     {
-        int basePrice = 100;           // базовая цена за любую пиццу 25 см 
+        int basePrice = 100;           // базовая цена за любую пиццу 25 см
         int sizePrice = size * 5;      // цена в зависимости от размера
         int cheesePrice = cheese * 10; // цена за добавленный сыр
         int saltPrice = salt * 5;      // цена за добавленную соль
@@ -73,7 +75,7 @@ class Menu
 public:
     virtual void display()
     {
-        cout << "1) Неаполитано\n";
+        cout << "\n1) Неаполитано\n";
         cout << "2) Маргарита\n";
         cout << "3) Карбонара\n";
         cout << "4) Ветчина и сыр\n";
@@ -115,7 +117,6 @@ public:
         default:
             break;
         }
-
         return pizza;
     }
 };
@@ -147,7 +148,7 @@ public:
             cout << "Цена за позицию: " << pizzas[i].getPrice() << " тугриков\n";
         }
         cout << "Общая сумма чека: " << total << " тугриков\n";
-    } 
+    }
 };
 
 int main()
@@ -158,18 +159,18 @@ int main()
 
     do
     {
-        menu.display();
         cout << "1-4 - выбор пиццы, 0 - заказ:";
+        menu.display();
         cin >> choice;
 
         if (choice >= 1 && choice <= 4)
         {
             int sizeChoice;
-            cout << "\n1) 25\n";
+            cout << "1-4 - выбор размера:\n";
+            cout << "1) 25\n";
             cout << "2) 30\n";
             cout << "3) 35\n";
             cout << "4) 40\n";
-            cout << "1-4 - выбор размера:";
             cin >> sizeChoice;
             if (sizeChoice >= 1 && sizeChoice <= 4)
             {
