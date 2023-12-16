@@ -39,17 +39,6 @@ public:
     {
         return salt;
     }
-    void setCheese(int _c)
-    {
-        cheese = _c;
-        return;
-    }
-
-    void setSalt(int _size)
-    {
-        salt = _size;
-        return;
-    }
 
 private:
     string name;
@@ -159,7 +148,7 @@ int main()
 
     do
     {
-        cout << "1-4 - выбор пиццы, 0 - заказ:";
+        cout << "1-4 - выбор пиццы, 0 - заказ:\n";
         menu.display();
         cin >> choice;
 
@@ -175,9 +164,9 @@ int main()
             if (sizeChoice >= 1 && sizeChoice <= 4)
             {
                 int saltChoice, cheeseChoice;
-                cout << "Сколько раз добавить сыра?:";
+                cout << "Сколько раз добавить сыра?:\n";
                 cin >> cheeseChoice;
-                cout << "\nСколько раз посолить?:";
+                cout << "Сколько раз посолить?:\n";
                 cin >> saltChoice;
                 Pizza pizza = menu.choosePizza(choice, sizeChoice, cheeseChoice, saltChoice);
                 order.addPizza(pizza);
