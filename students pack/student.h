@@ -5,6 +5,7 @@ using namespace std;
 class Student
 {
 private:
+    string name;
     void GreatStudent(); // отличник или нет
 
 private:
@@ -19,5 +20,5 @@ public:
 
     bool Otlichnik();
 
-    Student();
+    Student(string n):name(n){};
 };
