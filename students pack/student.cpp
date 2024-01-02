@@ -1,6 +1,5 @@
 #include "student.h"
 
-Student::Student() {}
 
 void Student::addMarks(const int mark) // получить оценку
 {
@@ -18,8 +17,8 @@ bool Student::Otlichnik()
 {
     GreatStudent();
     if (GS == true) 
-        cout << "Этот студент отличник\n";
-    else cout << "Этот студент не отличник\n";
+        cout << this->name <<" Учиться на отлично\n";
+    else cout << this->name << " Учитсья не на отлично\n";
     return GS;
 }
 
