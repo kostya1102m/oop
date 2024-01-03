@@ -7,14 +7,14 @@ int main()
     s1.addMarks(5);
     s1.addMarks(5);
     s1.addMarks(5);
-    s1.Otlichnik();
+    s1.GSorNot();
 
     Student s2("Маша");
     s2.addMarks(5);
     s2.addMarks(4);
     s2.addMarks(4);
     s2.addMarks(4);
-    s2.Otlichnik();
+    s2.GSorNot();
 
     return 0;
 
