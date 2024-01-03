@@ -1,6 +1,6 @@
 #include "student.h"
 
-void Student::addMarks(const int mark) // получить оценку
+void Student::addMarks(int mark)
 {
     if (mark > 1 && mark < 6)
         marks.push_back(mark);
