@@ -6,7 +6,6 @@ class Student
 {
 private:
     string name;
-    void GreatStudent(); // отличник или нет
 
 private:
     vector<int> marks;
@@ -17,8 +16,12 @@ public:
     void addMarks(const int grade);
 
     vector<int> getMarks();
+    
+    string getName();
 
     bool Otlichnik();
+
+    void GSorNot();
 
     Student(string n):name(n){};
 };
