@@ -13,7 +13,7 @@ private:
     bool GS = true;
 
 public:
-    void addMarks(const int grade);
+    void addMarks(int mark);
 
     vector<int> getMarks();
     
