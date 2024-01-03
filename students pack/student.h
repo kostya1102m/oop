@@ -6,14 +6,13 @@ class Student
 {
 private:
     string name;
-
-private:
+    unsigned parents;// типо счетчик родителей, чтобы не было более двух
     vector<int> marks;
-
     bool GS = true;
 
 public:
-    void addMarks(int mark);
+    unsigned getParent();
+    void addMarks(unsigned mark);
 
     vector<int> getMarks();
     
@@ -22,6 +21,8 @@ public:
     bool Otlichnik();
 
     void GSorNot();
+    
+    bool getGS();
 
     Student(string n):name(n){};
 };
