@@ -3,18 +3,25 @@
 
 void Teacher::setMood(Mood m)
 {
-    this->mood = m;
+    mood = m;
 }
 
 Mood Teacher::getMood()
 {
-    return this->mood;
+    return mood;
 }
-
+unsigned Teacher::getMarkcount()
+{
+    return markcount;
+}
 void Teacher::giveMark(shared_ptr<Student> &student)
 {
     srand(time(0));
-    short int mark;
+    unsigned mark;
+    if (markcount == 5)
+    {
+        mood = static_cast<Mood>(rand() % 3);
+    }
     if (mood == Mood::Great && student->Otlichnik())
         mark = 5;
     else if (!student->Otlichnik() && mood == Mood::Good)
@@ -33,8 +40,8 @@ void Teacher::giveMark(shared_ptr<Student> &student)
     }
     else if (student->Otlichnik() && (mood == Mood::Good || mood == Mood::Terrible))
     {
-        short int n = rand() % 3 == 0;
-        mark = (n == 0) ? 3 : (n == 1 ? 4 : 5);
+        short int num = rand() % 3 == 0;
+        mark = (num == 0) ? 3 : (num == 1 ? 4 : 5);
     }
     else
     {
@@ -43,7 +50,6 @@ void Teacher::giveMark(shared_ptr<Student> &student)
         else
             mark = 3;
     }
-
+    markcount++;
     student->addMarks(mark);
 }
-
