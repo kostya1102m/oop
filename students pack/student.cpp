@@ -1,13 +1,16 @@
 #include "student.h"
 
-void Student::addMarks(int mark)
+void Student::addMarks(unsigned mark)
 {
     if (mark > 1 && mark < 6)
         marks.push_back(mark);
     else
         cout << " invalid mark\n";
 }
-
+unsigned Student::getParent()
+{
+    return parents;
+}
 vector<int> Student::getMarks()
 {
     return marks;
@@ -23,15 +26,21 @@ bool Student::Otlichnik()
     {
         if (i != 5)
             GS = false;
-            return GS;
+        return GS;
     }
     GS = true;
     return GS;
 }
-void Student::GSorNot(){
+void Student::GSorNot()
+{
     Otlichnik();
     if (GS == true)
-        cout << this->getName() <<" учиться на отлично\n";
-    else 
-        cout << this->getName() <<" учиться не на отлично\n";
+        cout << this->getName() << " учиться на отлично\n";
+    else
+        cout << this->getName() << " учиться не на отлично\n";
+}
+
+bool Student::getGS() //для дизъюнкции, чтобы узнать отличники ли в среднем дети
+{
+    return GS;
 }
