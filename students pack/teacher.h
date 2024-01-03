@@ -5,7 +5,8 @@
 #include "student.h"
 #include <memory>
 
-enum class Mood{
+enum class Mood
+{
     Terrible,
     Good,
     Great
@@ -16,14 +17,17 @@ class Teacher
 private:
     string name;
     Mood mood;
-    
+
 public:
-    Teacher(string n):name(n){};
+    Teacher(string n) : name(n)
+    {
+        srand(time(0));
+        mood = static_cast<Mood>(rand() % 3);
+    };
 
     Mood getMood();
 
-    void giveMark(shared_ptr<Student>& student);
+    virtual void giveMark(shared_ptr<Student> &student);
 
-    void setMood(const Mood m);
-
+    void setMood(Mood m);
 };
