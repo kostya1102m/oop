@@ -1,36 +1,37 @@
 #include "student.h"
 
-
 void Student::addMarks(const int mark) // получить оценку
 {
     if (mark > 1 && mark < 6)
         marks.push_back(mark);
-    else cout <<" invalid mark\n";
+    else
+        cout << " invalid mark\n";
 }
 
 vector<int> Student::getMarks()
 {
     return marks;
 }
-
-bool Student::Otlichnik()
+string Student::getName()
 {
-    GreatStudent();
-    if (GS == true) 
-        cout << this->name <<" Учиться на отлично\n";
-    else cout << this->name << " Учитсья не на отлично\n";
-    return GS;
+    return name;
 }
 
-void Student::GreatStudent()
+bool Student::Otlichnik()
 {
     for (auto i : marks)
     {
         if (i != 5)
-        {
             GS = false;
-            return;
-        }
+            return GS;
     }
     GS = true;
+    return GS;
+}
+void Student::GSorNot(){
+    Otlichnik();
+    if (GS == true)
+        cout << this->getName() <<" учиться на отлично\n";
+    else 
+        cout << this->getName() <<" учиться не на отлично\n";
 }
