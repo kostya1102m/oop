@@ -12,7 +12,9 @@ public:
     void setTeacher(shared_ptr<Teacher> teacher) {
         this->teacher = teacher;
     }
-
+    shared_ptr<Teacher> getTeacher(){
+        return teacher;
+    }
     void LessonStarts() { 
          srand(time(0));
         for (auto student : students) {
