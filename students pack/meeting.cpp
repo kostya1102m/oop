@@ -30,13 +30,15 @@ public:
             {
                 for (int j = 0; j < parents[i]->getChild().size(); j++)
                 {
-                    if (parents[i]->getChild()[j]->Otlichnik())
+                    if (parents[i]->getChild()[j]->getMarks().size() != 0) //кто получил оценки
                     {
-                        cout <<parents[i]->getChild()[j]->getName() << " красава\n";
-
+                        if (parents[i]->getChild()[j]->Otlichnik())
+                        {
+                            cout << parents[i]->getChild()[j]->getName() << " красава\n";
+                        }
+                        else
+                            cout << parents[i]->getChild()[j]->getName() << " балбесина\n";
                     }
-                    else
-                        cout <<parents[i]->getChild()[j]->getName() << " балбесина\n";
                 }
             }
         }
