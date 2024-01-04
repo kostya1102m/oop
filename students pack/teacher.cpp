@@ -10,6 +10,9 @@ Mood Teacher::getMood()
 {
     return mood;
 }
+string Teacher::getName(){
+    return name;
+}
 unsigned Teacher::getMarkcount()
 {
     return markcount;
