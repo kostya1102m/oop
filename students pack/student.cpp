@@ -40,7 +40,3 @@ void Student::GSorNot()
         cout << this->getName() << " учиться не на отлично\n";
 }
 
-bool Student::getGS() //для дизъюнкции, чтобы узнать отличники ли в среднем дети
-{
-    return GS;
-}
