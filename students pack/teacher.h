@@ -11,6 +11,9 @@ enum class Mood
     Good,
     Great
 };
+enum class Classes{
+    
+};
 
 class Teacher
 {
@@ -32,6 +35,8 @@ public:
     virtual void giveMark(shared_ptr<Student> &student);
 
     unsigned getMarkcount();
+
+    string getName();
 
     void setMood(Mood m);
 };
