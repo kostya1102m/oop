@@ -21,8 +21,6 @@ public:
     bool Otlichnik();
 
     void GSorNot();
-    
-    bool getGS();
 
     Student(string n):name(n){};
 };
