@@ -5,7 +5,7 @@ void Teacher5::giveMark(shared_ptr<Student> &student)
     student->addMarks(5);
     markcount++;
     if (this->markcount == 2){
-        this->mood = static_cast<Mood>(rand() % 3);
+        this->setMood((Mood)(rand() % 3));
     }
 }
 void Teacher2::giveMark(shared_ptr<Student> &student)
@@ -13,6 +13,6 @@ void Teacher2::giveMark(shared_ptr<Student> &student)
     student->addMarks(2);
     markcount++;
     if (this->markcount == 8){
-         this->mood = static_cast<Mood>(rand() % 3);
+         this->setMood((Mood)(rand() % 3));
     }
 }
