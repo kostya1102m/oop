@@ -1,6 +1,9 @@
 #pragma once
 #include <vector>
+#include <algorithm>
+#include <ctime>
 #include <iostream>
+#include <memory>
 using namespace std;
 class Student
 {
@@ -11,7 +14,7 @@ private:
     bool GS = true;
 
 public:
-    unsigned getParent();
+    unsigned getParentNumber();
     void addMarks(unsigned mark);
 
     vector<int> getMarks();
