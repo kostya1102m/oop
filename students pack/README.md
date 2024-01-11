@@ -1,1 +1,2 @@
-Student's Pack пока еще в разработке
+Student's Pack fully completed
+
