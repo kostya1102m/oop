@@ -1,4 +1,5 @@
-#include "lesson.cpp"
+#include "student.cpp"
+#include "teacher.cpp"
 class Parent
 {
 private:
@@ -8,13 +9,13 @@ private:
     unsigned parents;
 
 public:
-    Parent(string n, Mood m)
+    Parent() {}
+    Parent(string n, vector<shared_ptr<Student>> children) : name(n), Children(children)
     {
-        name = n;
         srand(time(0));
         parentmood = static_cast<Mood>(rand() % 3);
     }
-    vector<shared_ptr<Student>> getChild()
+     vector<shared_ptr<Student>> getChild()
     {
         return Children;
     }
@@ -22,7 +23,7 @@ public:
     {
         return parentmood;
     }
-    int getparents()
+    unsigned getparents()
     {
         return parents;
     }
@@ -36,6 +37,7 @@ public:
         else
             return true;
     }
+
     bool areChildrenExcellent()
     {
         bool otl = true;
@@ -50,123 +52,124 @@ public:
                 return false;
         }
     }
-    void addChild(shared_ptr<Student> child)
+    virtual void addChild(shared_ptr<Student> child)
     {
         this->Children.push_back(child);
-        if (child->getParent() > 2)
+        if (child->getParentNumber() > 2)
         {
             this->Children.pop_back();
             cout << "У ребенка не может быть больше 2 родителей\n";
+        }
+    }
+    void tellAboutChildrenInGeneral()
+    {
+        if (ChildrenNumberCheck())
+        {
+            if (areChildrenExcellent())
+            {
+                switch (parentmood)
+                {
+                case Mood::Great:
+                    std::cout << "О таких детях можно только мечтать\n";
+                    break;
+                case Mood::Good:
+                    std::cout << "Я горжусь ими\n";
+                    break;
+                case Mood::Terrible:
+                    std::cout << "Хоть у меня и ужасное настроение, но надо признать что они гении\n";
+                    break;
+
+                default:
+                    break;
+                }
+            }
+            else
+            {
+                switch (parentmood)
+                {
+                case Mood::Great:
+                    std::cout << "У них огромный потенциал\n";
+                    break;
+                case Mood::Good:
+                    std::cout << "Они все равно молодцы\n";
+                    break;
+                case Mood::Terrible:
+                    std::cout << "Это просто кошмар, а не дети!\n";
+                    break;
+
+                default:
+                    break;
+                }
+            }
         }
     }
     virtual void tellAboutOwnAllChildren()
     {
         if (ChildrenNumberCheck())
         {
-            if (areChildrenExcellent() && parentmood == Mood::Great)
-            {
-                for (int i = 0; i < this->Children.size(); i++)
-                    if (Children[i]->Otlichnik())
-                    {
-                        Children[i]->GSorNot();
-                        cout << "\nЭТОТ ГРЫЗУН КРАСАВА";
-                    }
-                    else
-                    {
-                        Children[i]->GSorNot();
-                        cout << "\nЭТОТ ГРЫЗУН БАЛБЕСИНА";
-                    }
-            }
-            else
-            {
-                cout << "ОНИ ВСЕ БАЛБЕСЫ\n";
-            }
+            for (int i = 0; i < Children.size(); i++)
+                tellAboutOwnSpecificChild(Children[i]);
         }
     }
     virtual void tellAboutOwnRandomChild()
     {
         if (ChildrenNumberCheck())
         {
-            if (parentmood == Mood::Great)
-            {
-                srand(time(0));
-                int childindex = rand() % Children.size() + 1;
-                if (Children[childindex]->Otlichnik())
-                    cout << Children[childindex]->getName() << " молодец, я очень сильно люблю этого ребенка\n";
-                else
-                    cout << Children[childindex]->getName() << " старается, этому ребенку есть куда расти\n";
-            }
-            else if (parentmood == Mood::Good)
-            {
-                srand(time(0));
-                int childindex = rand() % Children.size() + 1;
-                if (Children[childindex]->Otlichnik())
-                    cout << Children[childindex]->getName() << " хорошо справляется с поставленными задачами\n";
-                else
-                    cout << Children[childindex]->getName() << " ленится и не может ответственно подойти к учебе\n";
-            }
-            else
-            {
-                srand(time(0));
-                int childindex = rand() % Children.size() + 1;
-                if (Children[childindex]->Otlichnik())
-                    cout << Children[childindex]->getName() << " не может полностью раскрыть свой потенциал\n";
-                else
-                    cout << Children[childindex]->getName() << " - это потеря потерь\n";
-            }
+            short childindex = rand() % Children.size();
+            tellAboutOwnSpecificChild(Children[childindex]);
         }
     }
-    void tellAboutOwnSpecificChild(shared_ptr<Student> child)
-    {
-        if (ChildrenNumberCheck())
-        {
-            if (parentmood == Mood::Great)
-            {
-                if (child->Otlichnik())
-                    cout << child->getName() << " молодец, я очень сильно люблю этого ребенка\n";
-                else
-                    cout << child->getName() << " старается, этому ребенку есть куда расти\n";
-            }
-            else if (parentmood == Mood::Good)
-            {
 
-                if (child->Otlichnik())
-                    cout << child->getName() << " хорошо справляется с поставленными задачами\n";
-                else
-                    cout << child->getName() << " ленится и не может ответственно подойти к учебе\n";
-            }
+    virtual void tellAboutOwnSpecificChild(shared_ptr<Student> child)
+    {
+        if (parentmood == Mood::Great)
+        {
+            if (child->Otlichnik())
+                cout << child->getName() << " молодец, я очень сильно люблю этого ребенка\n";
             else
-            {
-                if (child->Otlichnik())
-                    cout << child->getName() << " не может полностью раскрыть свой потенциал\n";
-                else
-                    cout << child->getName() << " - это потеря потерь\n";
-            }
+                cout << child->getName() << " старается, этому ребенку есть куда расти\n";
         }
-    }
+        else if (parentmood == Mood::Good)
+        {
+
+            if (child->Otlichnik())
+                cout << child->getName() << " хорошо справляется с поставленными задачами\n";
+            else
+                cout << child->getName() << " ленится и не может ответственно подойти к учебе\n";
+        }
+        else
+        {
+            if (child->Otlichnik())
+                cout << child->getName() << " не может полностью раскрыть свой потенциал\n";
+            else
+                cout << child->getName() << " - это потеря потерь\n";
+        }
+    } 
 };
 
 class Grandparent : public Parent
 {
 private:
-    vector<shared_ptr<Parent>> GrandparentChildren;
+    string name;
+    vector<shared_ptr<Student>> Grandchildren;
+    Mood grandparentmood;
 
 public:
-    Grandparent(string n, Mood grandmood) : Parent(n, grandmood) {}
-    void addChild(shared_ptr<Parent> GChild)
+    Grandparent() {}
+    Grandparent(string n, vector<shared_ptr<Student>> grandchildren) : Parent(n, grandchildren)
     {
-        this->GrandparentChildren.push_back(GChild);
-        if (GChild->getparents() > 2)
-        {
-            this->GrandparentChildren.pop_back();
-            cout << "У ребенка не может быть больше 2 родителей\n";
-        }
+        srand(time(0));
+        grandparentmood = static_cast<Mood>(rand() % 3);
     }
+    void addChild(shared_ptr<Student> child) override
+    {
+        this->Grandchildren.push_back(child); // предположим, что у внука может быть неограниченное количество бабушек, дедушек
+    }                                         // но родителя максимум два
     bool ChildrenNumberCheck() override
     {
-        if (this->GrandparentChildren.empty())
+        if (this->Grandchildren.empty())
         {
-            cout << "У этого родителя нет детей(это у бабушки или у дедушки)\n";
+            cout << "У старика нет внуков\n";
             return false;
         }
         else
@@ -175,54 +178,32 @@ public:
     void tellAboutOwnAllChildren() override
     {
         if (ChildrenNumberCheck())
-        {
-
-            for (int i = 0; i < this->GrandparentChildren.size() - 1; i++)
-            {
-                for (int j = 0; j < this->GrandparentChildren[i]->getChild().size() - 1; j++)
-                {
-                    GrandparentChildren[i]->getChild()[j]->GSorNot();
-                    cout << "Внучок молодец\n";
-                }
-            }
-        }
+            cout << "Мои внуки самые лучшие!!!!\n";
     }
-
     void tellAboutOwnRandomChild() override
     {
         if (ChildrenNumberCheck())
         {
-            srand(time(0));
-            int Parentchildindex = rand() % GrandparentChildren.size() + 1;
-            int childindex = rand() % GrandparentChildren[Parentchildindex]->getChild().size() + 1;
-            if (GrandparentChildren[Parentchildindex]->getChild()[childindex]->Otlichnik())
-                cout << GrandparentChildren[Parentchildindex]->getChild()[childindex]->getName() << " Старики уже не те, за то наши внуки - это будущее\n";
-            else
-                cout << GrandparentChildren[Parentchildindex]->getChild()[childindex]->getName() << " Это еще не конец, пойдем кашки покушаем?\n";
+            short childindex = rand() % Grandchildren.size();
+            tellAboutOwnSpecificChild(Grandchildren[childindex]);
         }
     }
-
-    void tellAboutOwnSpecificChild(shared_ptr<Student> child)
+    void tellAboutOwnSpecificChild(shared_ptr<Student> child) override
     {
         if (ChildrenNumberCheck())
-        {
-            for (int i = 0; i < this->GrandparentChildren.size() - 1; i++)
-            {
-                for (int j = 0; j < this->GrandparentChildren[i]->getChild().size() - 1; j++)
-                {
-                    if (child == GrandparentChildren[i]->getChild()[j])
-                    {
-                        if (child->Otlichnik())
-                            cout << child->getName() << " внучок старается изо всех сил, он самый лучший\n";
-                        else
-                            cout << child->getName() << " красавааааааааааа\n";
-                    }
-                }
-            }
-        }
+            cout << child->getName() << " самый лучший\n";
     }
-    void tellAboutAnotherChild() 
+    void tellAboutOtherRandomChild(shared_ptr<Student> child)
     {
-
+        if (grandparentmood == Mood::Great)
+        {
+            cout << child->getName() << " - молодец, моим внукам стоит взять пример\n";
+        }
+        else if (grandparentmood == Mood::Good)
+        {
+            cout << "Ну неплохо одет, видно родители кормят\n";
+        }
+        else
+            cout << "Этот ребенок и близко с моими внуками не сравнится\n";
     }
 };
