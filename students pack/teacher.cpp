@@ -1,6 +1,4 @@
 #include "teacher.h"
-#include <iostream>
-
 void Teacher::setMood(Mood m)
 {
     mood = m;
@@ -10,7 +8,8 @@ Mood Teacher::getMood()
 {
     return mood;
 }
-string Teacher::getName(){
+string Teacher::getName()
+{
     return name;
 }
 unsigned Teacher::getMarkcount()
@@ -21,10 +20,6 @@ void Teacher::giveMark(shared_ptr<Student> &student)
 {
     srand(time(0));
     unsigned mark;
-    if (markcount == 5)
-    {
-        mood = static_cast<Mood>(rand() % 3);
-    }
     if (mood == Mood::Great && student->Otlichnik())
         mark = 5;
     else if (!student->Otlichnik() && mood == Mood::Good)
@@ -54,5 +49,10 @@ void Teacher::giveMark(shared_ptr<Student> &student)
             mark = 3;
     }
     markcount++;
+    if (markcount == 5)
+    {
+        setMood((Mood)(rand() % 3));
+        markcount = 0;
+    }
     student->addMarks(mark);
 }
