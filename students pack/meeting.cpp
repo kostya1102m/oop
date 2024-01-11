@@ -6,6 +6,7 @@ private:
     vector<shared_ptr<Teacher>> teachers;
     vector<shared_ptr<Lesson>> lessons;
 
+
 public:
     void addLessonToDiscuss(shared_ptr<Lesson> lesson)
     {
