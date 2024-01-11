@@ -1,25 +1,47 @@
 #include "teacher.h"
-class Lesson {
+#include <algorithm>
+class Lesson
+{
 private:
     vector<shared_ptr<Student>> students;
     shared_ptr<Teacher> teacher;
 
 public:
-    void addStudents(shared_ptr<Student> student) {
+    void addStudents(shared_ptr<Student> student)
+    {
         students.push_back(student);
     }
 
-    void setTeacher(shared_ptr<Teacher> teacher) {
-        this->teacher = teacher;
+    void setTeacher(shared_ptr<Teacher> _teacher)
+    {
+        teacher = _teacher;
     }
-    shared_ptr<Teacher> getTeacher(){
+    shared_ptr<Teacher> getTeacher()
+    {
         return teacher;
     }
-    void LessonStarts() { 
-         srand(time(0));
-        for (auto student : students) {
-            int studindex = rand() % students.size() + 1; //рандомно раздаем оценки
-            teacher->giveMark(students[studindex]);
+
+    vector<shared_ptr<Student>> getStudents()
+    {
+        return students;
+    }
+    void LessonStarts()
+{
+    if (!students.empty())
+    {
+        srand(time(0));
+        short numStudentsToMark = rand() % students.size();
+
+        std::random_shuffle(students.begin(), students.end());
+
+        if (teacher != nullptr) {
+            for (int i = 0; i < numStudentsToMark; i++)
+            {
+                teacher->giveMark(students[i]);
+            }
         }
-    }   
+         else
+            cout << "Учителя нет\n";
+    }
+}
 };
