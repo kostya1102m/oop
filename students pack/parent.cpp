@@ -28,7 +28,7 @@ public:
     }
     virtual bool ChildrenNumberCheck()
     {
-        if (this->Children.size() == 0)
+        if (this->Children.empty())
         {
             cout << "У этого родителя нет детей\n";
             return false;
@@ -164,7 +164,7 @@ public:
     }
     bool ChildrenNumberCheck() override
     {
-        if (this->GrandparentChildren.size() == 0)
+        if (this->GrandparentChildren.empty())
         {
             cout << "У этого родителя нет детей(это у бабушки или у дедушки)\n";
             return false;

@@ -8,6 +8,7 @@ private:
 
 
 public:
+    Meeting(){}
     void addLessonToDiscuss(shared_ptr<Lesson> lesson)
     {
         lessons.push_back(lesson);
@@ -35,7 +36,8 @@ public:
                     {
                         if (parents[i]->getChild()[j]->Otlichnik())
                         {
-                            cout << parents[i]->getChild()[j]->getName() << " красава\n";
+                            cout << parents[i]->getChild()[j]->getName();
+                            parents[i]->tellAboutOwnSpecificChild(parents[i]->getChild()[j]);
                         }
                         else
                             cout << parents[i]->getChild()[j]->getName() << " балбесина\n";
